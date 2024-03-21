@@ -1,34 +1,42 @@
 import * as z from "zod";
 import { UserRole } from "@prisma/client";
 
-export const SettingsSchema = z.object({
-  name: z.optional(z.string()),
-  isTwoFactorEnabled: z.optional(z.boolean()),
-  role: z.enum([UserRole.ADMIN, UserRole.USER]),
-  email: z.optional(z.string().email()),
-  password: z.optional(z.string().min(6)),
-  newPassword: z.optional(z.string().min(6)),
-})
-  .refine((data) => {
-    if (data.password && !data.newPassword) {
-      return false;
-    }
-
-    return true;
-  }, {
-    message: "New password is required!",
-    path: ["newPassword"]
+// auth schemas
+export const SettingsSchema = z
+  .object({
+    name: z.optional(z.string()),
+    isTwoFactorEnabled: z.optional(z.boolean()),
+    role: z.enum([UserRole.ADMIN, UserRole.USER]),
+    email: z.optional(z.string().email()),
+    password: z.optional(z.string().min(6)),
+    newPassword: z.optional(z.string().min(6)),
   })
-  .refine((data) => {
-    if (data.newPassword && !data.password) {
-      return false;
-    }
+  .refine(
+    (data) => {
+      if (data.password && !data.newPassword) {
+        return false;
+      }
 
-    return true;
-  }, {
-    message: "Password is required!",
-    path: ["password"]
-  })
+      return true;
+    },
+    {
+      message: "New password is required!",
+      path: ["newPassword"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.newPassword && !data.password) {
+        return false;
+      }
+
+      return true;
+    },
+    {
+      message: "Password is required!",
+      path: ["password"],
+    }
+  );
 
 export const NewPasswordSchema = z.object({
   password: z.string().min(6, {
@@ -63,3 +71,128 @@ export const RegisterSchema = z.object({
     message: "Name is required",
   }),
 });
+
+// content schemas
+
+export const formDataTraineeSchema = z.object({
+  studentName: z.string().min(1, { message: "name is required" }),
+  apprenticeships: z.string().min(1, { message: "this field is required" }),
+  email: z.string().email({ message: "invalid email address" }),
+  telephone: z.string().refine((value) => /^\d{10,11}$/.test(value), {
+    message: "please check the contact number entered",
+  }),
+  intake: z.string().min(1, { message: "this field is required" }),
+  notes: z.string().optional(),
+});
+
+export type TFormDataTraineeSchema = z.infer<typeof formDataTraineeSchema>;
+
+export const formDataCompanySchema = z.object({
+  companyName: z.string().min(1, { message: "name is required" }),
+  contactPerson: z.string().min(1, { message: "name is required" }),
+  apprenticeships: z.string().min(1, { message: "this field is required" }),
+  email: z.string().email({ message: "invalid email address" }),
+  telephone: z.string().refine((value) => /^\d{10,11}$/.test(value), {
+    message: "please check the contact number entered",
+  }),
+
+  numberOfTrainees: z.string().refine((value) => value !== "undefined", {
+    message: "Value cannot be the string 'undefined'",
+  }),
+  notes: z.string().optional(),
+});
+
+export type TFormDataCompanySchema = z.infer<typeof formDataCompanySchema>;
+
+export const SignUpFormSchema = z
+  .object({
+    name: z.string().min(1, { message: "name is required" }),
+    email: z.string().email({ message: "invalid email address" }),
+    password: z
+      .string()
+      .min(1, { message: "this field is required" })
+      .max(15, { message: "exceeded maximum characters" }),
+    confirmPassword: z
+      .string()
+      .min(1, { message: "this field is required" })
+      .max(15, { message: "exceeded maximum characters" }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
+export type TSignUpFormSchema = z.infer<typeof SignUpFormSchema>;
+
+export const LoginFormSchema = z
+  .object({
+    email: z.string().email({ message: "invalid email address" }),
+    password: z
+      .string()
+      .min(1, { message: "this field is required" })
+      .max(15, { message: "exceeded maximum characters" }),
+    confirmPassword: z
+      .string()
+      .min(1, { message: "this field is required" })
+      .max(15, { message: "exceeded maximum characters" }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
+export type TLoginFormSchema = z.infer<typeof LoginFormSchema>;
+
+export const BlogSchema = z.object({
+  user: z.string().min(1, { message: "this field is required" }),
+  mainTitle: z.string().min(1, { message: "this field is required" }),
+  tag: z
+    .string()
+    .min(1, { message: "this field is required" })
+    .max(20, { message: "exceeded maximum characters" }),
+  imgUrl: z.string().min(1, { message: "this field is required" }),
+  description: z
+    .string()
+    .min(1, { message: "this field is required" })
+    .max(150, { message: "exceeded maximum characters" }),
+  section: z.string().min(1, { message: "this field is required" }),
+});
+
+const ParagraphSchema = z.object({
+  paragraph: z.string(),
+});
+
+const SubSectionSchema = z.object({
+  subTitle: z.string(),
+  paragraphs: z.array(ParagraphSchema),
+});
+
+// Define a schema for the main blog post
+export const BlogPostSchema = z.object({
+  user: z.string().min(1, { message: "this field is required" }),
+  mainTitle: z.string().min(1, { message: "this field is required" }),
+  tag: z
+    .string()
+    .min(1, { message: "this field is required" })
+    .max(20, { message: "exceeded maximum characters" }),
+  description: z
+    .string()
+    .min(1, { message: "this field is required" })
+    .max(150, { message: "exceeded maximum characters" }),
+  section: z.array(SubSectionSchema),
+});
+
+export type TBlogPostSchema = z.infer<typeof BlogPostSchema>;
+
+// Define a schema for the EnquiryFormSchema 
+export const EnquiryFormSchema = z.object({
+  name: z.string().min(1, { message: "this field is required" }),
+  email: z.string().email().min(1, { message: "this field is required" }),
+  message : z.string().min(1, { message: "this field is required" }).max(300,{message:"you have reached characters limit."}),
+  telephone: z.string().refine((value) => /^\d{10,11}$/.test(value), {
+    message: "please check the contact number entered",
+  }),
+
+});
+
+export type TEnquiryFormSchema = z.infer<typeof EnquiryFormSchema>;

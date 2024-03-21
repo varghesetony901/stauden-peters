@@ -1,14 +1,14 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { getUserByEmail } from "@/data/user";
+import { getUserByEmail, getUserById } from "@/data/user";
 import { getVerificationTokenByToken } from "@/data/verificiation-token";
 
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token);
 
   if (!existingToken) {
-    return { error: "Token does not exist!" };
+    return { error: "Token does not exist! May be your account might have already verified. Please try login." };
   }
 
   const hasExpired = new Date(existingToken.expires) < new Date();
@@ -17,7 +17,28 @@ export const newVerification = async (token: string) => {
     return { error: "Token has expired!" };
   }
 
-  const existingUser = await getUserByEmail(existingToken.email);
+  if(existingToken?.userId){
+    const existingUser = await getUserById(existingToken?.userId);
+
+    if (!existingUser) {
+      return { error: "User does not exist!" };
+    }
+
+    await db.user.update({
+      where: { id: existingUser.id },
+      data: { 
+        email: existingToken.email,
+      }
+    });
+  
+    await db.verificationToken.delete({
+      where: { id: existingToken.id }
+    });
+  
+    return { success: "Email verified!" };
+  }
+
+  const existingUser = await getUserByEmail(existingToken?.email);
 
   if (!existingUser) {
     return { error: "Email does not exist!" };
@@ -26,6 +47,7 @@ export const newVerification = async (token: string) => {
   await db.user.update({
     where: { id: existingUser.id },
     data: { 
+      isEmailVerified : true,
       emailVerified: new Date(),
       email: existingToken.email,
     }

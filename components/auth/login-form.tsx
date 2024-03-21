@@ -62,6 +62,7 @@ export const LoginForm = () => {
 
           if (data?.twoFactor) {
             setShowTwoFactor(true);
+            setSuccess("Please check your email to find the code!")
           }
         })
         .catch(() => setError("Something went wrong"));

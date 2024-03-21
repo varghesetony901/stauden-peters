@@ -3,9 +3,18 @@
  * These routes do not require authentication
  * @type {string[]}
  */
+
 export const publicRoutes = [
   "/",
-  "/auth/new-verification"
+  "/auth/new-verification",
+  "/services",
+  "/blogs",
+  "/contact",
+  "/gallery",
+  "/about",
+  "/data-protection",
+
+
 ];
 
 /**
@@ -27,6 +36,7 @@ export const authRoutes = [
  * @type {string}
  */
 export const apiAuthPrefix = "/api/auth";
+
 
 /**
  * The default redirect path after logging in

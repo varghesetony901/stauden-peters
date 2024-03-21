@@ -39,7 +39,7 @@ export const login = async (
     return { error: "Email does not exist!" }
   }
 
-  if (!existingUser.emailVerified) {
+  if (!existingUser.isEmailVerified) {
     const verificationToken = await generateVerificationToken(
       existingUser.email,
     );
