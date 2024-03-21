@@ -13,8 +13,6 @@ export const publicRoutes = [
   "/gallery",
   "/about",
   "/data-protection",
-
-
 ];
 
 /**

@@ -29,9 +29,9 @@ export default auth((req) => {
     return null;
   }
 
-  // if (req.nextUrl.pathname.startsWith("/blogs")) {
-  //   return null;
-  // }
+  if (req.nextUrl.pathname.startsWith("/blogs")) {
+    return null;
+  }
 
   if (!isLoggedIn && !isPublicRoute) {
     let callbackUrl = nextUrl.pathname;
