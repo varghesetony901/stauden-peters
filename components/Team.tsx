@@ -9,7 +9,7 @@ const Team = () => {
       <div className="mx-auto  mb-8 lg:mb-16">
         <h2 className="mb-4 text-3xl font-bold text-gray-900 text-center">Our Team</h2>
         <p className="font-light text-gray-500 lg:mb-16 sm:text-lg ">
-        At the heart of our company lies a dedicated core team, comprising individuals whose expertise and commitment drive our mission forward. From visionary leaders shaping strategic direction to diligent administrators ensuring operational efficiency, each member brings unique strengths and perspectives to the table. Together, we collaborate seamlessly, leveraging our collective skills to navigate challenges, seize opportunities, and deliver impactful outcomes. Anchored by a shared passion for our company's goals, our core team serves as the driving force behind our success, inspiring others and fostering a culture of excellence every step of the way
+        At the heart of our company lies a dedicated core team, comprising individuals whose expertise and commitment drive our mission forward. From visionary leaders shaping strategic direction to diligent administrators ensuring operational efficiency, each member brings unique strengths and perspectives to the table. Together, we collaborate seamlessly, leveraging our collective skills to navigate challenges, seize opportunities, and deliver impactful outcomes. Anchored by a shared passion for our company&apos;s goals, our core team serves as the driving force behind our success, inspiring others and fostering a culture of excellence every step of the way
         </p>
       </div>
 
