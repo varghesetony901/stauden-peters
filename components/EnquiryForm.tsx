@@ -48,7 +48,7 @@ const EnquiryForm = () => {
   }
 
   return (
-    <div className="mx-0.5">
+    <div className="">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleForm)}>
           <div className=" flex flex-col gap-4  m-auto">

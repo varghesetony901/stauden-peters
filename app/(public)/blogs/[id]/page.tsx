@@ -82,7 +82,7 @@ const Page = () => {
         <MaxWidthWrapper className="py-10">
           {/* Title section */}
           <div className="flex flex-col items-center gap-2 my-6">
-            <div className="bg-yellow-400 p-2 py-1 rounded-md text-sm font-semibold ">
+            <div className="bg-yellow-400 p-2 py-1 rounded-sm text-sm font-semibold ">
               <p>{postById?.tag?.tagName}</p>
             </div>
             <h1 className="text-3xl font-medium capitalize">

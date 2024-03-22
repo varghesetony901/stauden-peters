@@ -18,13 +18,13 @@ const page = () => {
   return (
     <Wrapper>
       <MaxWidthWrapper>
-        <div className="px-6 py-12 mx-auto">
+        <div className=" py-12 mx-auto">
           <h1 className="font-bold pb-6 lg:pb-0 text-center text-3xl">
             Contact
           </h1>
-          <div className="lg:flex lg:items-start lg:-mx-6">
+          <div className=" lg:flex lg:items-start lg:-mx-6">
             {/* left section */}
-            <div className="lg:w-1/2 lg:mx-6 flex flex-col lg:px-2 lg:py-10">
+            <div className="px-4 lg:w-1/2 lg:mx-6 flex flex-col lg:px-2 lg:py-10">
               {/* address section */}
 
               <div className="mt-6 space-y-8 md:mt-8 pb-4 flex flex-col">
@@ -118,7 +118,7 @@ const page = () => {
             <div className="mt-16 border-t w-[80%] border-yellow-300 lg:border-none  m-auto  lg:w-[1px] lg:h-96 bg-yellow-300 mx-auto"></div>
 
             {/* right section */}
-            <div className="mt-6 lg:w-1/2 lg:mx-6">
+            <div className="px-4 mt-6 lg:w-1/2 lg:px-6">
               <div className="w-full lg:px-8 py-10 mx-auto overflow-hidden bg-white rounded-lg shadow-2xl dark:bg-gray-900 lg:max-w-xl shadow-gray-300/50 dark:shadow-black/50">
                 <h1 className="text-lg font-medium ">
                   What do you want to ask?
