@@ -2,6 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Pagination from "rc-pagination";
 import "../node_modules/rc-pagination/assets/index.css";
+import "./Pagination.css"
 
 const PaginationFC = ({ count }: { count: number | undefined }) => {
   const pathname = usePathname();
@@ -19,11 +20,12 @@ const PaginationFC = ({ count }: { count: number | undefined }) => {
     <div className="py-10 px-4 flex justify-center">
       <Pagination
         onChange={handlePageClick}
-        className="flex justify-center items-center gap-2"
+        className=" text-black flex justify-center items-center gap-2 "
         showQuickJumper={false}
         showTitle={false}
         total={count}
         current={Number(page)}
+       
       />
     </div>
   );

@@ -19,7 +19,7 @@ enum UserRole {
 model User {
   id                      String                    @id @default(auto()) @map("_id") @db.ObjectId
   name                    String?
-  email                   String?                   @unique
+  email                   String                   @unique
   isEmailVerified         Boolean                   @default(false)
   emailVerified           DateTime?
   image                   String?
@@ -119,24 +119,35 @@ model CompanyServices {
 
 model BlogTags {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  tagName       String
-  blogs          Blogs[]
+  tagNameEn     String
+  tagNameDe     String
+  blogs         Blogs[]
 }
 
 
 model Blogs {
  id             String      @id @default(auto()) @map("_id") @db.ObjectId
- mainTitle      String
+ mainTitleEn    String
+ mainTitleDe    String
  imgUrl         String
- description    String
- subTitle1       String?
- subTitle2       String?
- subTitle3       String?
- subTitle4       String?
- paragraph1      String?
- paragraph2      String?
- paragraph3      String?
- paragraph4      String?
+ descriptionEn  String
+ descriptionDe  String
+ subTitleEn1    String?
+ subTitleDe1    String?
+ subTitleEn2    String?
+ subTitleDe2    String?
+ subTitleEn3    String?
+ subTitleDe3    String?
+ subTitleEn4    String?
+ subTitleDe4    String?
+ paragraphEn1   String?
+ paragraphDe1   String?
+ paragraphEn2   String?
+ paragraphDe2   String?
+ paragraphEn3   String?
+ paragraphDe3   String?
+ paragraphEn4   String?
+ paragraphDe4   String?
  tag            BlogTags    @relation(fields: [tagId], references: [id])
  tagId          String
  createdBy      User        @relation(fields: [userId], references: [id])
@@ -160,7 +171,8 @@ model Contact {
 
 model PhotoTags {
   id          String      @id @default(auto()) @map("_id") @db.ObjectId
-  tagName     String
+  tagNameEn   String
+  tagNameDe   String
   photos      Photos[]
   
 }
@@ -168,7 +180,7 @@ model PhotoTags {
 model Photos {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
   imgUrl        String
-  description   String
+  description   String?
   tag           PhotoTags   @relation(fields: [tagId], references: [id])
   tagId         String
 }
@@ -196,4 +208,39 @@ model EnquiryMail {
  email         String  
  telephone     String    
  message       String 
+}
+
+
+model StudentServicesBackup {
+  id                String      @id @default(auto()) @map("_id") @db.ObjectId
+  studentName       String
+  apprenticeships   String
+  email             String     
+  telephone         String      
+  intake            String
+  notes             String?
+  remarks           String
+  
+}
+
+model EnquiryMailBackup {
+ id            String      @id @default(auto()) @map("_id") @db.ObjectId  
+ name          String
+ email         String  
+ telephone     String    
+ message       String 
+ remarks       String
+}
+
+
+model CompanyServicesBackup {
+  id                String      @id @default(auto()) @map("_id") @db.ObjectId
+  companyName       String
+  contactPerson     String
+  apprenticeships   String
+  email             String     
+  telephone         String
+  numberOfTrainees  String
+  notes             String?
+  remarks           String
 }

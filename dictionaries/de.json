@@ -1,0 +1,60 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Dienste",
+    "blog": "Blog",
+    "Contact": "Kontakt",
+    "Gallery": "Galerie"
+  },
+  "page": {
+    "home": {
+      "hero" :{
+        "tagLine1" : "Jenseits der Einstellung, Aufbau von Teams",
+        "tagLine2" : "Talente mit Chancen verbinden :",
+        "tagLine3" : "Ihr Erfolg, unsere Kompetenz!",
+        "tagLine4" : "Ihr zuverlässiger Partner bei der Personalbeschaffung.",
+        "button1" : "Los geht's",
+        "button2" : "Kontakt"
+      },
+      "about": {
+        "title": "Über uns",
+        "description1": "Jedes Jahr bleiben in Deutschland Tausende von Lehrstellen unbesetzt, während andernorts hohe Arbeitslosenzahlen herrschen und junge Menschen keine klaren beruflichen Perspektiven haben. Dies ist eine der größten Herausforderungen für unsere Wirtschaft. Unsere Aufgabe ist es, eine Plattform zu schaffen, die beide Seiten zusammenbringt. In Zusammenarbeit mit deutschen Sprachschulen in Indien vermitteln wir den Schülern nicht nur die deutsche Sprache, sondern bereiten sie auch gezielt auf das Leben und Arbeiten in Deutschland vor.",
+        "description2": "Wir stellen den Schülern die verschiedenen Ausbildungsberufe vor und helfen ihnen bei der Wahl ihres zukünftigen Berufsweges. Sobald die Entscheidung gefallen ist, begleiten wir die Schüler durch den gesamten Rekrutierungsprozess bis hin zu ihrem ersten Arbeitstag in Deutschland. Mit unseren Dienstleistungen können deutsche Unternehmen ihre Ausbildungsplätze besetzen und eine langfristige Personalstrategie aufbauen."
+      },
+      "services" : {
+        "title" : "Dienste",
+        "tagLine1": "Sie sind auf der Suche nach Auszubildenden oder suchen einen Ausbildungsplatz? Dann sind Sie hier genau richtig!",
+        "description1" : "Durch unser Netzwerk und unsere Verbindungen zu u.a. kleinen, mittleren und großen Unternehmen sowie Schulen, Vereinen und anderen Kanälen in verschiedenen Regionen und bereits 16 Ländern weltweit, bringen wir Auszubildende direkt mit Ausbildungsbetrieben zusammen.",
+        "description2" : "Unser Personalberatungsmanagement für Auszubildende beinhaltet unter anderem eine sorgfältige Auswahl der Auszubildenden und Ausbilder.",
+        "tagLine2" : "Vorteile unserer Dienstleistungen",
+        "card1" : {
+          "title": "Für Auszubildende",
+          "point1": "Unterstützung von Anwendungsmaßnahmen",
+          "point2": "Unterstützung bei der Berufswahl",
+          "point3": "Suche nach geeigneten Unternehmen",
+          "point4": "Wir arrangieren das Vorstellungsgespräch und begleiten Sie [falls gewünscht]",
+          "point5": "Unterstützung in der Anfangsphase"
+        },
+        "card2" : {
+          "title": "Für Unternehmen",
+          "point1": "Übernahme der komplexen Suche nach Auszubildenden",
+          "point2": "Wegfall von Kosten u.a. für Werbung und enorme Zeitersparnis",
+          "point3": "Optimiertes Vorauswahl-/Auswahlverfahren",
+          "point4": "Begleitung der Auszubildenden in der Anfangsphase"
+        },
+        "applyButton" : "Jetzt bewerben"
+      },
+      "team" : {
+        "title" : "Unser Team",
+        "description" : "Das Herzstück unseres Unternehmens ist ein engagiertes Kernteam, das sich aus Personen zusammensetzt, deren Fachwissen und Engagement unsere Mission vorantreibt. Von visionären Führungskräften, die die strategische Richtung vorgeben, bis hin zu sorgfältigen Verwaltungsmitarbeitern, die die betriebliche Effizienz sicherstellen, bringt jedes Mitglied einzigartige Stärken und Perspektiven mit. Gemeinsam arbeiten wir nahtlos zusammen und nutzen unsere kollektiven Fähigkeiten, um Herausforderungen zu bewältigen, Chancen zu ergreifen und wirkungsvolle Ergebnisse zu erzielen. Durch die gemeinsame Leidenschaft für die Ziele unseres Unternehmens ist unser Kernteam die treibende Kraft hinter unserem Erfolg, inspiriert andere und fördert eine Kultur der Exzellenz bei jedem Schritt des Weges."
+      }
+    },
+
+    "contact" : {
+      "title" : "Kontakt",
+      "downloadLink" : "Klicken Sie hier, um unsere Broschüre herunterzuladen!",
+      "formQuery" : "Was möchten Sie fragen?",
+      "follow" : "Folgen Sie uns"
+    }
+  }
+}

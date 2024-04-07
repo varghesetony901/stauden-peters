@@ -3,17 +3,28 @@ import { MenuSquare, XCircle } from "lucide-react";
 import { RevealList, RevealWrapper } from "next-reveal";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+import LocaleSwitcher from "./LocaleSwitcher";
+import { Locale } from "@/i18n.config";
 
-const MobileNav = () => {
+const MobileNav = ({ locale }: { locale: Locale }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const MenuItems = [
-    { name: "Home", link: "/" },
-    { name: "Services", link: "/services" },
-    { name: "Blog", link: "/blogs" },
-    { name: "Contact", link: "/contact" },
-    { name: "Gallery", link: "/gallery" },
+  const MenuItemsEn = [
+    { name: "home", link: `/${locale}` },
+    { name: "about", link: `/${locale}/about` },
+    { name: "products", link: `/${locale}/products` },
+    { name: "blogs", link: `/${locale}/blogs` },
+    { name: "contact", link: `/${locale}/contact` },
+    // { name: "gallery", link: `/${locale}/gallery` },
+  ];
+  const MenuItemsDe = [
+    { name: "home", link: `/${locale}` },
+    { name: "über", link: `/${locale}/about` },
+    { name: "Produkte", link: `/${locale}/products` },
+    { name: "blogs", link: `/${locale}/blogs` },
+    { name: "Kontakt", link: `/${locale}/contact` },
+    // { name: "Galerie", link: `/${locale}/gallery` },
   ];
 
   const handleClickOutside = (event: Event) => {
@@ -61,16 +72,30 @@ const MobileNav = () => {
               origin="left"
               className={"flex flex-col gap-4 text-right px-6 mt-2"}
             >
-              {MenuItems.map((menu) => (
-                <Link
-                  onClick={() => setIsOpen(!isOpen)}
-                  href={menu.link}
-                  key={menu.name}
-                  className="font-semibold"
-                >
-                  {menu.name}
-                </Link>
-              ))}
+              <div>
+                <LocaleSwitcher />
+              </div>
+              {locale === "en"
+                ? MenuItemsEn.map((menu) => (
+                    <Link
+                      onClick={() => setIsOpen(!isOpen)}
+                      href={menu.link}
+                      key={menu.name}
+                      className="font-semibold capitalize"
+                    >
+                      {menu.name}
+                    </Link>
+                  ))
+                : MenuItemsDe.map((menu) => (
+                    <Link
+                      onClick={() => setIsOpen(!isOpen)}
+                      href={menu.link}
+                      key={menu.name}
+                      className="font-semibold capitalize"
+                    >
+                      {menu.name}
+                    </Link>
+                  ))}
             </RevealList>
           </div>
         </RevealWrapper>

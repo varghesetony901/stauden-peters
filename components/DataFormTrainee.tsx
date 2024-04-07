@@ -28,22 +28,25 @@ import { CreateStudentService } from "@/actions/create-student-service";
 import { FormSuccess } from "./form-success";
 import { FormError } from "./form-error";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const defaultValues = {
   studentName: "",
-  intake : "April 2025",
+  intake: "April 2025",
   apprenticeships: "",
   email: "",
   notes: "",
   telephone: "",
-}
+};
 
 const DataFormTrainee = () => {
+  const params = useParams();
+  const locale = params?.lang;
   const form = useForm<TFormDataTraineeSchema>({
     resolver: zodResolver(formDataTraineeSchema),
     defaultValues: {
       studentName: "",
-      intake : "April 2025",
+      intake: "April 2025",
       apprenticeships: "",
       email: "",
       notes: "",
@@ -58,11 +61,17 @@ const DataFormTrainee = () => {
 
   async function handleForm(data: TFormDataTraineeSchema) {
     setIsUploading(true);
-    console.log(data);
+
     const resp = await CreateStudentService(data);
-    console.log(resp.message);
-    setSuccess(resp?.message);
-    setError(resp?.error);
+    if (resp.message && locale === "en") {
+      setSuccess(resp?.message);
+    } else if (resp.message && locale === "de") {
+      setSuccess("Studierendenservice erstellt");
+    } else if (resp.error && locale === "en") {
+      setError(resp?.error);
+    } else if (resp.error && locale === "de") {
+      setError("Serviceanfrage bereits vorhanden");
+    }
     setIsUploading(false);
     form.reset();
   }
@@ -78,7 +87,11 @@ const DataFormTrainee = () => {
               name="studentName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Applicant Name</FormLabel>
+                  <FormLabel>
+                    {locale === "en"
+                      ? "Applicant Name"
+                      : "Name des Antragstellers"}
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="John Doe" {...field} />
                   </FormControl>
@@ -93,7 +106,11 @@ const DataFormTrainee = () => {
               name="apprenticeships"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Apprenticeships</FormLabel>
+                  <FormLabel>
+                    {locale === "en"
+                      ? "Apprenticeships"
+                      : "Lehrlingsausbildung"}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Nursing specialist, Hotel Management, Food Technology"
@@ -111,9 +128,9 @@ const DataFormTrainee = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{locale === "en" ? "Email" : "E-Mail"}</FormLabel>
                   <FormControl>
-                    <Input placeholder="hello@world.com" {...field} />
+                    <Input placeholder="hello@123.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -127,11 +144,17 @@ const DataFormTrainee = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Telephone with direct dialing (voluntary information)
+                    {locale === "en"
+                      ? "Telephone with direct dialing (voluntary information)"
+                      : "Telefon mit Direktwahl (freiwillige Information)"}
                   </FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="contact number here"
+                      placeholder={
+                        locale === "en"
+                          ? "contact number here"
+                          : "Kontaktnummer hier"
+                      }
                       {...field}
                       type="number"
                     />
@@ -147,11 +170,22 @@ const DataFormTrainee = () => {
               name="intake"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Which intake are you looking for?</FormLabel>
+                  <FormLabel>
+                    {locale === "en"
+                      ? "Which intake are you looking for?"
+                      : "Nach welchem Einlass suchen Sie?"}
+                  </FormLabel>
                   <Select onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue defaultValue={""} placeholder="Select intake here" />
+                        <SelectValue
+                          defaultValue={""}
+                          placeholder={
+                            locale === "en"
+                              ? "Select intake here"
+                              : "Hier Einlass auswählen"
+                          }
+                        />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -177,10 +211,16 @@ const DataFormTrainee = () => {
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notes</FormLabel>
+                  <FormLabel>
+                    {locale === "en" ? "Notes" : "Anmerkungen"}
+                  </FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="What do you want to tell us in advance?"
+                      placeholder={
+                        locale === "en"
+                          ? "What do you want to tell us in advance?"
+                          : "Was möchten Sie uns im Voraus mitteilen?"
+                      }
                       {...field}
                     />
                   </FormControl>
@@ -196,15 +236,18 @@ const DataFormTrainee = () => {
               target="_blank"
               className="underline cursor-pointer text-blue-800 hover:text-blue-600"
             >
-              C @ G Recruiting is committed to protecting and respecting your
-              privacy. We will contact you, store and use your data only for the
-              purpose of this request. If you agree, agree!
+              {locale === "en"
+                ? "C @ G Recruiting is committed to protecting and respecting your  privacy. We will contact you, store and use your data only for the purpose of this request. If you agree, agree!"
+                : "C @ G Recruiting verpflichtet sich, Ihre Privatsphäre zu schützen und zu respektieren. Wir werden Sie kontaktieren, Ihre Daten speichern und nur für den Zweck dieser Anfrage verwenden. Wenn Sie einverstanden sind, stimmen Sie zu!"}
             </Link>
             <div className="flex items-center gap-4">
               <Checkbox onCheckedChange={() => setIsChecked(!isChecked)} />
 
               <p>
-                I agree to be contacted by C@G Recruiting
+                {locale === "en"
+                  ? "I agree to be contacted by C@G Recruiting"
+                  : "Ich bin damit einverstanden, von C@G Recruiting kontaktiert zu werden."}
+
                 <span className="text-red-500"> *</span>
               </p>
             </div>
@@ -213,15 +256,20 @@ const DataFormTrainee = () => {
               target="_blank"
               className="underline cursor-pointer text-blue-800 hover:text-blue-600"
             >
-              You can object to this consent at any time. Further information
-              about our data protection procedures can be found here.
+              {locale === "en"
+                ? "You can object to this consent at any time. Further information about our data protection procedures can be found here."
+                : "Sie können dieser Einwilligung jederzeit widersprechen. Weitere Informationen über unsere Datenschutzverfahren finden Sie hier."}
             </Link>
 
             <Button type="submit" disabled={!isChecked || isUploading}>
-              Submit
+              {locale === "en" ? "Submit" : "Einreichen"}
             </Button>
 
-            <p>Best regards, C@G Recruiting team</p>
+            <p>
+              {locale === "en"
+                ? "Best regards, C@G Recruiting team"
+                : "Mit freundlichen Grüßen, C@G Recruiting Team"}
+            </p>
 
             <FormSuccess message={success} />
             <FormError message={error} />

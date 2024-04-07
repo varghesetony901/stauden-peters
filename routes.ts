@@ -15,9 +15,22 @@ export const publicRoutes = [
   "/data-protection",
 ];
 
+export const protectedRoutes = [
+  "/dashboard",
+  "/dashboard/student-services",
+  "/dashboard/company-services",
+  "/dashboard/enquiry-mail",
+  "/dashboard/photo-tags",
+  "/dashboard/photos",
+  "/dashboard/blog-tags",
+  "/dashboard/blogs",
+  "/dashboard/backup",
+];
+
+
 /**
  * An array of routes that are used for authentication
- * These routes will redirect logged in users to /settings
+ * These routes will redirect logged in users to /dashboard
  * @type {string[]}
  */
 export const authRoutes = [
@@ -40,4 +53,4 @@ export const apiAuthPrefix = "/api/auth";
  * The default redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/settings";
+export const DEFAULT_LOGIN_REDIRECT = "/dashboard";

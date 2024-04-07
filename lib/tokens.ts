@@ -83,7 +83,4 @@ export const generateVerificationToken = async (email: string, userId?:string) =
     });
 
     return verficationToken
-
-
-  return verficationToken;
 };

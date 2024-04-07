@@ -1,0 +1,71 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "blog": "Blog",
+    "Contact": "Contact",
+    "Gallery": "Gallery"
+  },
+  "page": {
+    "home": {
+      "hero" :{
+        "tagLine1" : "Beyond Hiring, Building Teams",
+        "tagLine2" : "Connecting Talent to Opportunity :",
+        "tagLine3" : "Your Success, Our Expertise!",
+        "tagLine4" : "Your trusted partner in recruiting.",
+        "button1" : "Get Started",
+        "button2" : "Contact Us"
+      },
+      "about": {
+        "title": "About Us",
+        "description1": "Every year, thousands of apprenticeships remain unfilled in Germany, while elsewhere there are high unemployment rates and young people have no clear career prospects. This is one of the biggest challenges for our economy. Our mission is to create a platform that brings both sides together. In cooperation with German language schools in India, we not only not only teach students the German language, but also prepare them specifically for life and work in Germany.",
+        "description2": "We introduce the students to the various training occupations and help them choose their future career path. As soon as the decision is made, we support the students through the entire recruitment process right through to their first day of work in Germany. On to our services, German companies can fill their apprenticeship vacancies and build a long-term personnel strategy."
+      },
+      "services" : {
+        "title" : "Services",
+        "tagLine1": "Are you looking for trainees or looking for a training position? Then you are exactly right here!",
+        "description1" : "Through our network and connections with, among others, small, medium-sized and large companies as well as schools, clubs and other channels in various regions and already 16 countries worldwide, we bring trainees directly together with training companies.",
+        "description2" : "Our personnel consulting management for trainees includes, among other things, a careful selection of trainees and trainers.",
+        "tagLine2" : "Advantages of our services",
+        "card1" : {
+          "title": "For Trainees",
+          "point1": "Support of application measures",
+          "point2": "Support in choosing a career",
+          "point3": "Search for suitable companies",
+          "point4": "We arrange the interview and accompany you [if desired]",
+          "point5": "Support in the early days"
+        },
+        "card2" : {
+          "title": "For Compnaies",
+          "point1": "Taking over the complex search for trainees",
+          "point2": "Elimination of costs for, among other things, advertising and enormous time savings",
+          "point3": "Optimized pre-selection/selection process",
+          "point4": "Accompanying the trainees in the early days"
+        },
+        "applyButton" : "Apply Now"
+      },
+      "team" : {
+        "title" : "Our Team",
+        "description" : "At the heart of our company lies a dedicated core team, comprising individuals whose expertise and commitment drive our mission forward. From visionary leaders shaping strategic direction to diligent administrators ensuring operational efficiency, each member brings unique strengths and perspectives to the table. Together, we collaborate seamlessly, leveraging our collective skills to navigate challenges, seize opportunities, and deliver impactful outcomes. Anchored by a shared passion for our company's goals, our core team serves as the driving force behind our success, inspiring others and fostering a culture of excellence every step of the way."
+      }
+    },
+    
+    "contact" : {
+      "title" : "Contact",
+      "downloadLink" : "click here to download our brochure!",
+      "formQuery" : "What do you want to ask?",
+      "follow" : "Follow us"
+    },
+    "privacy" : {
+      "mainTitle" : "Privacy Policy",
+      "section1" : {
+        "mainHeading" : "1. An overview of data protection",
+        "h1" : "General information",
+        "p1" : "The following information will provide you with an easy to navigate overview of what will happen with your personal data when you visit this website. The term “personal data” comprises all data that can be used to personally identify you. For detailed information about the subject matter of data protection, please consult our Data Protection Declaration, which we have included beneath this copy."
+      }
+      
+
+    }
+
+  }
+}

@@ -1,16 +1,13 @@
-"use server"
+"use server";
 
 import axios from "axios";
 
 export const videoData = async () => {
-    const query = process.env.YOUTUBE_API as string;
-    console.log(query);
+  const query = process.env.YOUTUBE_API as string;
 
-    const res = await axios.get(query).then((result)=>{
-        console.log(result.data)
-        return result.data;
-        
-    })
+  const res = await axios.get(query).then((result) => {
+    return result.data;
+  });
 
-    return {res}
-}
+  return { res };
+};

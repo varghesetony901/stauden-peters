@@ -143,19 +143,58 @@ export const LoginFormSchema = z
 
 export type TLoginFormSchema = z.infer<typeof LoginFormSchema>;
 
+// export const BlogSchema = z.object({
+//   user: z.string().min(1, { message: "this field is required" }),
+//   mainTitle: z.string().min(1, { message: "this field is required" }),
+//   tag: z
+//     .string()
+//     .min(1, { message: "this field is required" })
+//     .max(20, { message: "exceeded maximum characters" }),
+//   imgUrl: z.string().min(1, { message: "this field is required" }),
+//   description: z
+//     .string()
+//     .min(1, { message: "this field is required" })
+//     .max(150, { message: "exceeded maximum characters" }),
+//   section: z.string().min(1, { message: "this field is required" }),
+// });
+
+const imageSchema = z
+  .instanceof(File)
+  .refine((file) => {
+    return file instanceof File;
+  }, "* No file selected")
+  .refine((file) => {
+    return file instanceof File && file.type.startsWith("image/");
+  }, "* Must be an image file")
+  .refine((file) => {
+    return file?.size < 1024 * 1024 * 2;
+  }, "* File must be less than 2MB")
+  .optional();
+
 export const BlogSchema = z.object({
-  user: z.string().min(1, { message: "this field is required" }),
-  mainTitle: z.string().min(1, { message: "this field is required" }),
-  tag: z
-    .string()
-    .min(1, { message: "this field is required" })
-    .max(20, { message: "exceeded maximum characters" }),
-  imgUrl: z.string().min(1, { message: "this field is required" }),
-  description: z
-    .string()
-    .min(1, { message: "this field is required" })
-    .max(150, { message: "exceeded maximum characters" }),
-  section: z.string().min(1, { message: "this field is required" }),
+  mainTitleEn: z.string().min(1, "Title is required"),
+  mainTitleDe: z.string().min(1, "Title is required"),
+  descriptionEn: z.string().min(1, "Description is required"),
+  descriptionDe: z.string().min(1, "Description is required"),
+  imgUrl: imageSchema,
+  tagId: z.string().min(1, "Tag is required"),
+  userId: z.string().min(1, "User is required"),
+  subTitleEn1: z.string().optional(),
+  subTitleEn2: z.string().optional(),
+  subTitleEn3: z.string().optional(),
+  subTitleEn4: z.string().optional(),
+  subTitleDe1: z.string().optional(),
+  subTitleDe2: z.string().optional(),
+  subTitleDe3: z.string().optional(),
+  subTitleDe4: z.string().optional(),
+  paragraphEn1: z.string().optional(),
+  paragraphEn2: z.string().optional(),
+  paragraphEn3: z.string().optional(),
+  paragraphEn4: z.string().optional(),
+  paragraphDe1: z.string().optional(),
+  paragraphDe2: z.string().optional(),
+  paragraphDe3: z.string().optional(),
+  paragraphDe4: z.string().optional(),
 });
 
 const ParagraphSchema = z.object({

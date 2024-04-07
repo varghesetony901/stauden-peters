@@ -18,6 +18,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+import { CreateCompanyService } from "@/actions/create-company-service";
+import Link from "next/link";
+import { FormError } from "./form-error";
+import { FormSuccess } from "./form-success";
 import {
   Select,
   SelectContent,
@@ -25,12 +29,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { CreateCompanyService } from "@/actions/create-company-service";
-import { FormSuccess } from "./form-success";
-import { FormError } from "./form-error";
-import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const DataFormCompany = () => {
+  const params = useParams();
+  const locale = params?.lang;
   const form = useForm<TFormDataCompanySchema>({
     resolver: zodResolver(formDataCompanySchema),
     defaultValues: {
@@ -51,11 +54,19 @@ const DataFormCompany = () => {
 
   async function handleForm1(data: TFormDataCompanySchema) {
     setIsUploading(true)
-    console.log(data);
+
     const resp = await CreateCompanyService(data);
-    console.log(resp.message);
-    setSuccess(resp?.message);
-    setError(resp?.error)
+
+    if (resp.message && locale === "en") {
+      setSuccess(resp?.message);
+    } else if (resp.message && locale === "de") {
+      setSuccess("Firmenservice erstellt");
+    } else if (resp.error && locale === "en") {
+      setError(resp?.error);
+    } else if (resp.error && locale === "de") {
+      setError("Serviceanfrage bereits vorhanden");
+    }
+
     setIsUploading(false)
     form.reset()
   }
@@ -71,7 +82,9 @@ const DataFormCompany = () => {
               name="companyName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Company Name</FormLabel>
+                  <FormLabel>
+                  {locale === "en" ? "Company Name" : "Name des Unternehmens"}
+                    </FormLabel>
                   <FormControl>
                     <Input placeholder="Morris Planet" {...field} />
                   </FormControl>
@@ -86,7 +99,9 @@ const DataFormCompany = () => {
               name="contactPerson"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Contact Person</FormLabel>
+                  <FormLabel>
+                  {locale === "en" ? " Contact Person" : " Kontaktperson"}
+                   </FormLabel>
                   <FormControl>
                     <Input placeholder="John Doe" {...field} />
                   </FormControl>
@@ -101,7 +116,7 @@ const DataFormCompany = () => {
               name="apprenticeships"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Apprenticeships</FormLabel>
+                  <FormLabel>{locale === "en" ? "Apprenticeships" : "Lehrlingsausbildung"}</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Nursing specialist, Hotel Management, Food Technology "
@@ -119,9 +134,9 @@ const DataFormCompany = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{locale === "en" ? "Email" : "E-Mail"}</FormLabel>
                   <FormControl>
-                    <Input placeholder="hello@world.com" {...field} />
+                  <Input placeholder="hello@123.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -135,10 +150,15 @@ const DataFormCompany = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Telephone with direct dialing (voluntary information)
+                  {locale === "en" ? "Telephone with direct dialing (voluntary information)" : "Telefon mit Direktwahl (freiwillige Information)"}
+                    
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="contact number here" {...field} type="number"/>
+                  <Input
+                      placeholder={locale === "en" ? "contact number here" : "Kontaktnummer hier"}
+                      {...field}
+                      type="number"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -152,21 +172,21 @@ const DataFormCompany = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Please make me an offer for the following number of
-                    trainees!
+                  {locale === "en" ? "Please make me an offer for the following number of trainees!" : "Bitte machen Sie mir ein Angebot für die folgende Anzahl von Praktikanten!"}
+                    
                   </FormLabel>
                   <Select onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select number of trainees" />
+                        <SelectValue placeholder= {locale === "en" ? "Select number of trainees" : "Anzahl der Auszubildenden auswählen"} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="One">One</SelectItem>
-                      <SelectItem value="Two">Two</SelectItem>
-                      <SelectItem value="Three">Three</SelectItem>
-                      <SelectItem value="Four">Four</SelectItem>
-                      <SelectItem value="Five">Five</SelectItem>
+                      <SelectItem value="One">{locale === "en" ? "One" : "Eine"}</SelectItem>
+                      <SelectItem value="Two">{locale === "en" ? "Two" : "Zwei"}</SelectItem>
+                      <SelectItem value="Three">{locale === "en" ? "Three" : "Drei"}</SelectItem>
+                      <SelectItem value="Four">{locale === "en" ? "Four" : "Vier"}</SelectItem>
+                      <SelectItem value="Five">{locale === "en" ? "Five" : "Fünf"}</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -182,10 +202,10 @@ const DataFormCompany = () => {
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notes</FormLabel>
+                  <FormLabel>{locale === "en" ? "Notes" : "Anmerkungen"}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="What do you want to tell us in advance?"
+                  <Input
+                      placeholder= {locale === "en" ? "What do you want to tell us in advance?" : "Was möchten Sie uns im Voraus mitteilen?"}
                       {...field}
                     />
                   </FormControl>
@@ -201,15 +221,16 @@ const DataFormCompany = () => {
               target="_blank"
               className="underline cursor-pointer text-blue-800 hover:text-blue-600"
             >
-              C @ G Recruiting is committed to protecting and respecting your
-              privacy. We will contact you, store and use your data only for the
-              purpose of this request. If you agree, agree!
+               
+              {locale === "en" ? "C @ G Recruiting is committed to protecting and respecting your  privacy. We will contact you, store and use your data only for the purpose of this request. If you agree, agree!" : "C @ G Recruiting verpflichtet sich, Ihre Privatsphäre zu schützen und zu respektieren. Wir werden Sie kontaktieren, Ihre Daten speichern und nur für den Zweck dieser Anfrage verwenden. Wenn Sie einverstanden sind, stimmen Sie zu!"}
+              
             </Link>
             <div className="flex items-center gap-4">
               <Checkbox onCheckedChange={() => setIsChecked(!isChecked)} />
 
               <p>
-                I agree to be contacted by C@G Recruiting
+              {locale === "en" ? "I agree to be contacted by C@G Recruiting" : "Ich bin damit einverstanden, von C@G Recruiting kontaktiert zu werden."}
+                
                 <span className="text-red-500"> *</span>
               </p>
             </div>
@@ -218,17 +239,21 @@ const DataFormCompany = () => {
               target="_blank"
               className="underline cursor-pointer text-blue-800 hover:text-blue-600"
             >
-              You can object to this consent at any time. Further information
-              about our data protection procedures can be found here.
+              {locale === "en" ? "You can object to this consent at any time. Further information about our data protection procedures can be found here." : "Sie können dieser Einwilligung jederzeit widersprechen. Weitere Informationen über unsere Datenschutzverfahren finden Sie hier."}
+              
             </Link>
 
             <Button type="submit" disabled={!isChecked || isUploading}>
-              Submit
+            {locale === "en" ? "Submit" : "Einreichen"}
+              
             </Button>
 
-            <p>Best regards, C@G Recruiting team</p>
-            <FormSuccess message={success}/>
-            <FormError message={error}/>
+            <p>
+            {locale === "en" ? "Best regards, C@G Recruiting team" : "Mit freundlichen Grüßen, C@G Recruiting Team"}
+              </p>
+
+            <FormSuccess message={success} />
+            <FormError message={error} />
           </div>
         </form>
       </Form>

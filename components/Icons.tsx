@@ -3,9 +3,16 @@ import { LucideProps } from "lucide-react";
 export const Icons = {
   logo: (props: LucideProps) => (
     <img
-      src="/logo.jpg"
+      src="/logo.png"
       alt="Logo"
-      className="w-52 sm:w-56"
+      className="w-40 sm:w-48 xl:w-56"
+    />
+  ),
+  smallLogo: (props: LucideProps) => (
+    <img
+      src="/logoSmall.jpg"
+      alt="LogoSmall"
+      className="w-10 "
     />
   ),
 };
