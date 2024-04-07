@@ -13,7 +13,7 @@ type Props = {
   tagNameDe: string;
 };
 
-const page = () => {
+const Page = () => {
   const [options, setOptions] = useState<Props[]>();
   const [tagEn, setTagEn] = useState<string>("");
 
@@ -110,4 +110,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

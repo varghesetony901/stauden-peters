@@ -25,7 +25,7 @@ const NavBarItems = ({ locale }: { locale: Locale }) => {
     { name: "über", link: `/${locale}/about` },
     { name: "Produkte", link: `/${locale}/products` },
     { name: "blogs", link: `/${locale}/blogs` },
-    { name: "Kontakt", link: `/${locale}/contact` },
+    { name: "kontakt", link: `/${locale}/contact` },
     // { name: "Galerie", link: `/${locale}/gallery` },
   ];
 
