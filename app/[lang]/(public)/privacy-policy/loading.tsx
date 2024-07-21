@@ -1,7 +1,7 @@
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 
 const Loading = () => {
-  return <LoadingSkeleton />;
+  return <LoadingSkeleton />
 };
 
 export default Loading;

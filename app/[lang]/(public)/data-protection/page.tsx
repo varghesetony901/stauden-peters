@@ -8,7 +8,8 @@ const Page = () => {
     <Wrapper>
       <MaxWidthWrapper> 
         <div className="py-10 lg:pt-24 flex flex-col gap-10">
-          <div>
+          <p>Data protection goes here..!</p>
+          {/* <div>
             <p className="text-xl font-semibold text-center underline">
               Imprint and Data protection
             </p>
@@ -82,9 +83,9 @@ const Page = () => {
                 violations, we will immediately remove such content.
               
             </p>
-          </div>
+          </div> */}
           {/* Data protection */}
-          <div className="flex flex-col gap-6">
+          {/* <div className="flex flex-col gap-6">
             <p className="text-xl font-medium text-center">Data protection</p>
 
             <p className="text-xl font-light">
@@ -398,7 +399,7 @@ const Page = () => {
                 emails.
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </MaxWidthWrapper>
     </Wrapper>

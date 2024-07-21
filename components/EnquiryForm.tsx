@@ -40,21 +40,22 @@ const EnquiryForm = () => {
 
 
   async function handleForm(data: TEnquiryFormSchema) {
-    setIsUploading(true)
+    // setIsUploading(true)
 
-    const resp = await enquiry(data);
-    if (resp.message && locale === "en") {
-      setSuccess(resp?.message);
-    } else if (resp.message && locale === "de") {
-      setSuccess("Nachricht erfolgreich gesendet!");
-    } else if (resp.error && locale === "en") {
-      setError(resp?.error);
-    } else if (resp.error && locale === "de") {
-      setError("Sie haben Anfragen, die noch zu klären sind!");
-    }
+    // const resp = await enquiry(data);
+    // if (resp.message && locale === "en") {
+    //   setSuccess(resp?.message);
+    // } else if (resp.message && locale === "de") {
+    //   setSuccess("Nachricht erfolgreich gesendet!");
+    // } else if (resp.error && locale === "en") {
+    //   setError(resp?.error);
+    // } else if (resp.error && locale === "de") {
+    //   setError("Sie haben Anfragen, die noch zu klären sind!");
+    // }
 
-    setIsUploading(false)
-    form.reset()
+    // setIsUploading(false)
+    // form.reset()
+    alert("form submitted!")
   }
 
   return (
@@ -109,6 +110,7 @@ const EnquiryForm = () => {
                   <FormControl>
                     <Input placeholder= 
                     {locale === "en" ? "contact number here" : "Kontaktnummer hier"}
+                    type="number"
                     {...field} />
                   </FormControl>
                   <FormMessage />

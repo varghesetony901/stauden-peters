@@ -23,7 +23,7 @@ const Page = async ({
       <MaxWidthWrapper className="pt-10 lg:pt-24 ">
         <h1 className="font-bold  pb-6 lg:pb-0 text-center text-3xl">Blogs</h1>
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-3 lg:mt-6  gap-6">
+        {/* <div className="grid sm:grid-cols-2 xl:grid-cols-3 lg:mt-6  gap-6">
           {posts &&
             posts.map((post) => (
               <BlogCard
@@ -44,7 +44,8 @@ const Page = async ({
         </div>
         <div className="mt-6">
           <PaginationFC key={count} count={count} />
-        </div>
+        </div> */}
+        <p className="pb-10">Blogs appear here..!!</p>
       </MaxWidthWrapper>
     </Wrapper>
   );
