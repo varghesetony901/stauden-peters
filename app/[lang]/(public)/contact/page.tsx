@@ -35,7 +35,8 @@ const Page = async ({ params }: { params: { lang: Locale } }) => {
                 <div className=" flex gap-2 items-center">
                   <FaFileDownload size={20} />
                   <a
-                    href="https://tony-next-ecommerce.s3.ap-south-1.amazonaws.com/C%40G+Recruiting+UG+Brochure.pdf"
+                    // href="https://tony-next-ecommerce.s3.ap-south-1.amazonaws.com/C%40G+Recruiting+UG+Brochure.pdf"
+                    href="#"
                     target="_blank"
                     download
                     className="mx-2 inline-block hover:underline md:text-lg text-blue-600"
